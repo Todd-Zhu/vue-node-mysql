@@ -17,6 +17,14 @@ db.connect((err)=>{
     console.log("数据库连接成功");
 });
 
+const host = "http://localhost:8080";
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", host);
+    res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    next();
+});
+
 app.listen(3001, ()=>{
     console.log("服务器开始端口：3001");
 })
